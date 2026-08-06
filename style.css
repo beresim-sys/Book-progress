@@ -295,24 +295,33 @@ body {
   background-color: #fafbfc;
 }
 
-/* First Column Bold */
+/* First Column Bold & Sticky */
 .progress-table td:first-child {
   font-weight: 700;
   color: var(--text-main);
   min-width: 180px;
   position: sticky;
   right: 0;
-  background-color: inherit;
+  background-color: var(--card-bg); /* Solid background to prevent transparent overlay */
   z-index: 10;
+  border-left: 1px solid var(--border-color); /* Visual scroll separator */
+  box-shadow: -2px 0 5px -2px rgba(0, 0, 0, 0.05); /* Soft shadow indicating scroll depth */
 }
 
 /* Header style for first column */
 .progress-table th:first-child {
   position: sticky;
   right: 0;
-  background-color: #fafafb;
+  background-color: #fafafb; /* Solid header bg */
   z-index: 10;
   color: var(--text-main);
+  border-left: 1px solid var(--border-color); /* Visual scroll separator */
+  box-shadow: -2px 0 5px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Maintain hover effect on sticky cells */
+.progress-table tbody tr:hover td:first-child {
+  background-color: #fafbfc; /* Matches parent tr:hover background */
 }
 
 /* Grid & Text Centers */
@@ -656,40 +665,144 @@ body {
 
 /* Responsive adjust */
 @media (max-width: 768px) {
-  body {
-    padding: 1.5rem 1rem;
+  html, body {
+    overflow-x: hidden; /* Prevent page-level horizontal overflow */
   }
+
+  body {
+    padding: 1.25rem 0.75rem; /* Tighter padding for mobile screens */
+  }
+
+  .app-container {
+    gap: 1.25rem; /* Tighter gap */
+  }
+
   .app-header {
     flex-direction: column;
     align-items: stretch;
+    gap: 1rem;
   }
+
   .progress-widget {
     min-width: 100%;
+    width: 100%;
+    padding: 0.75rem 1rem;
   }
+
   .app-tabs {
-    gap: 1rem;
+    gap: 0.75rem;
     overflow-x: auto;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    margin-top: 0.5rem;
+    scrollbar-width: none; /* Hide Firefox scrollbar track */
+    -webkit-overflow-scrolling: touch; /* Smooth inertia scroll on iOS */
   }
+
+  .app-tabs::-webkit-scrollbar {
+    display: none; /* Hide Chrome/Safari scrollbar track */
+  }
+
   .tab-btn {
     white-space: nowrap;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.95rem;
+    flex-shrink: 0;
   }
+
+  .nav-divider {
+    margin-top: -0.75rem; /* Re-align divider with tabs */
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  /* Table responsiveness and touch targets */
+  .progress-table th, 
+  .progress-table td {
+    padding: 0.75rem 0.5rem; /* Smaller padding to fit more columns */
+    font-size: 0.85rem;      /* Scaled down text size */
+  }
+
+  /* Reduce minimum width of sticky first column on mobile to save space */
+  .progress-table td:first-child,
+  .progress-table th:first-child {
+    min-width: 110px;
+    font-size: 0.85rem;
+  }
+
+  /* Expand touch target for checkbox cells to 44px+ height */
+  .progress-table td.checkbox-cell {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .circle-check {
+    width: 28px;  /* Make the circular check button slightly larger and easier to hit */
+    height: 28px;
+  }
+
+  /* Forms & controls */
   .form-row {
     flex-direction: column;
+    gap: 0.75rem;
   }
+
   .form-row .form-input,
   .form-row .btn {
     width: 100%;
   }
-  .section-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
+
   .reader-controls {
     width: 100%;
+    gap: 0.5rem;
   }
+
   .reader-controls .form-input {
     flex: 1;
+  }
+
+  .legend-container {
+    flex-wrap: wrap; /* Wrap check legend on narrow screens */
+    gap: 0.5rem 1rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+
+  .task-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .add-task-card {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    padding: 1.25rem;
+    gap: 1.25rem;
+    width: 95%;
+  }
+}
+
+/* Adjustments for extremely narrow screens (e.g. 320px) */
+@media (max-width: 360px) {
+  .app-title {
+    font-size: 1.75rem;
+  }
+  
+  .app-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .reader-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .reader-controls .btn {
+    width: 100%;
   }
 }
