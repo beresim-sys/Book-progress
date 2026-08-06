@@ -485,6 +485,52 @@ body {
   min-width: 220px;
 }
 
+/* Legend (מקרא) Styling */
+.legend-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  background-color: var(--card-bg);
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+  width: fit-content;
+  box-shadow: var(--shadow-sm);
+}
+
+.legend-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-circle {
+  width: 18px !important;
+  height: 18px !important;
+  border-width: 1.5px !important;
+  pointer-events: none;
+}
+
+.legend-circle svg {
+  width: 9px !important;
+  height: 9px !important;
+  stroke-width: 4px !important;
+  display: block;
+}
+
+.legend-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
 /* Reader Tracking Elements */
 .reader-controls {
   display: flex;
