@@ -16,7 +16,7 @@ const INITIAL_CHAPTERS = [
 ];
 
 const COLUMNS = [
-  { id: "comments", label: "הכנסת הערות" },
+  { id: "comments", label: "הערות שלי" },
   { id: "mindmap", label: "מפת חשיבה" },
   { id: "agents", label: "סוכן עריכה" },
   { id: "evil-editor", label: "העורך המרושע" },
