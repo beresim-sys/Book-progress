@@ -21,7 +21,6 @@ const COLUMNS = [
   { id: "agents", label: "סוכן עריכה" },
   { id: "evil-editor", label: "העורך המרושע" },
   { id: "contradictions", label: "סתירות" },
-  { id: "rewrite-engine", label: "מנוע שכתוב" },
   { id: "skills-editing", label: "סקילים - הגהה, מותג, אמונות" },
   { id: "readers-rewrite", label: "קוראות ומנוע שכתוב" },
   { id: "ai-writing", label: "AI" }
@@ -29,17 +28,17 @@ const COLUMNS = [
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { comments: true, mindmap: false, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false }, // פרולוג
-  1: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": true, "skills-editing": false, "readers-rewrite": false },  // שרה
-  2: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": true, "skills-editing": false, "readers-rewrite": false },  // רפאל
-  3: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false }, // סלווטור
-  4: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false }, // סוזט
-  5: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": true, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false },  // מלכה
-  6: { comments: false, mindmap: false, agents: false, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false }, // מאיר
-  7: { comments: false, mindmap: false, agents: false, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false }, // ניסים
-  8: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false }, // אפילוג
-  9: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false }, // נספח סלוניקי
-  10: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false, "skills-editing": false, "readers-rewrite": false } // נספח דמויות
+  0: { comments: true, mindmap: false, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "skills-editing": false, "readers-rewrite": false }, // פרולוג
+  1: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "skills-editing": false, "readers-rewrite": false },  // שרה
+  2: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "skills-editing": false, "readers-rewrite": false },  // רפאל
+  3: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "skills-editing": false, "readers-rewrite": false }, // סלווטור
+  4: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "skills-editing": false, "readers-rewrite": false }, // סוזט
+  5: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": true, "skills-editing": false, "readers-rewrite": false },  // מלכה
+  6: { comments: false, mindmap: false, agents: false, "evil-editor": false, contradictions: false, "ai-writing": false, "skills-editing": false, "readers-rewrite": false }, // מאיר
+  7: { comments: false, mindmap: false, agents: false, "evil-editor": false, contradictions: false, "ai-writing": false, "skills-editing": false, "readers-rewrite": false }, // ניסים
+  8: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "skills-editing": false, "readers-rewrite": false }, // אפילוג
+  9: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "skills-editing": false, "readers-rewrite": false }, // נספח סלוניקי
+  10: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "skills-editing": false, "readers-rewrite": false } // נספח דמויות
 };
 
 // Screenshot 2 tasks mapping
