@@ -24,7 +24,7 @@ const COLUMNS = [
   { id: "rewrite-engine", label: "מנוע שכתוב" },
   { id: "skills-editing", label: "עריכה עם סקילים - הגהה, מותג, אמונות" },
   { id: "readers-rewrite", label: "קוראות ומנוע שכתוב" },
-  { id: "ai-writing", label: "כתיבת AI" }
+  { id: "ai-writing", label: "AI" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
