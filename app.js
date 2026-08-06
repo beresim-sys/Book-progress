@@ -19,7 +19,6 @@ const COLUMNS = [
   { id: "comments", label: "הכנסת הערות" },
   { id: "mindmap", label: "מפת חשיבה" },
   { id: "agents", label: "סוכן עריכה" },
-  { id: "subchapters", label: "חלוקה לתת פרקים" },
   { id: "evil-editor", label: "העורך המרושע" },
   { id: "contradictions", label: "סתירות" },
   { id: "ai-writing", label: "כתיבת AI" },
@@ -28,17 +27,17 @@ const COLUMNS = [
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { comments: true, mindmap: false, agents: true, subchapters: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false }, // פרולוג
-  1: { comments: true, mindmap: true, agents: true, subchapters: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": true },  // שרה
-  2: { comments: true, mindmap: true, agents: true, subchapters: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": true },  // רפאל
-  3: { comments: true, mindmap: true, agents: true, subchapters: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false }, // סלווטור
-  4: { comments: true, mindmap: true, agents: true, subchapters: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false }, // סוזט
-  5: { comments: true, mindmap: true, agents: true, subchapters: true, "evil-editor": true, contradictions: true, "ai-writing": true, "rewrite-engine": false },  // מלכה
-  6: { comments: false, mindmap: false, agents: false, subchapters: false, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false }, // מאיר
-  7: { comments: false, mindmap: false, agents: false, subchapters: false, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false }, // ניסים
-  8: { comments: true, mindmap: false, agents: true, subchapters: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false }, // אפילוג
-  9: { comments: true, mindmap: false, agents: true, subchapters: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false }, // נספח סלוניקי
-  10: { comments: true, mindmap: false, agents: true, subchapters: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false } // נספח דמויות
+  0: { comments: true, mindmap: false, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false }, // פרולוג
+  1: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": true },  // שרה
+  2: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": true },  // רפאל
+  3: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false }, // סלווטור
+  4: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": false, "rewrite-engine": false }, // סוזט
+  5: { comments: true, mindmap: true, agents: true, "evil-editor": true, contradictions: true, "ai-writing": true, "rewrite-engine": false },  // מלכה
+  6: { comments: false, mindmap: false, agents: false, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false }, // מאיר
+  7: { comments: false, mindmap: false, agents: false, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false }, // ניסים
+  8: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false }, // אפילוג
+  9: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false }, // נספח סלוניקי
+  10: { comments: true, mindmap: false, agents: true, "evil-editor": false, contradictions: false, "ai-writing": false, "rewrite-engine": false } // נספח דמויות
 };
 
 // Screenshot 2 tasks mapping
