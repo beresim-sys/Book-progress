@@ -22,7 +22,7 @@ const COLUMNS = [
   { id: "evil-editor", label: "העורך המרושע" },
   { id: "contradictions", label: "סתירות" },
   { id: "rewrite-engine", label: "מנוע שכתוב" },
-  { id: "skills-editing", label: "עריכה עם סקילים - הגהה, מותג, אמונות" },
+  { id: "skills-editing", label: "סקילים - הגהה, מותג, אמונות" },
   { id: "readers-rewrite", label: "קוראות ומנוע שכתוב" },
   { id: "ai-writing", label: "AI" }
 ];
