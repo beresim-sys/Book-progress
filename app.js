@@ -18,7 +18,7 @@ const INITIAL_CHAPTERS = [
 const COLUMNS = [
   { id: "comments", label: "הכנסת הערות" },
   { id: "mindmap", label: "מפת חשיבה" },
-  { id: "agents", label: "עריכה עם סוכנים" },
+  { id: "agents", label: "סוכן עריכה" },
   { id: "subchapters", label: "חלוקה לתת פרקים" },
   { id: "evil-editor", label: "העורך המרושע" },
   { id: "contradictions", label: "סתירות" },
