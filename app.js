@@ -413,22 +413,37 @@ function renderReaderTable() {
       const tdCheck = document.createElement("td");
       tdCheck.className = "checkbox-cell";
 
-      const isRead = reader.progress && reader.progress[chIndex];
+      const status = reader.progress && reader.progress[chIndex];
 
       const divCheck = document.createElement("div");
-      divCheck.className = `circle-check checked-info ${isRead ? "checked-info" : ""}`;
-      if (isRead) {
+      if (status === "green") {
+        divCheck.className = "circle-check checked-success";
+        divCheck.innerHTML = SVG_CHECK_MARK;
+      } else if (status === "purple" || status === true) {
+        divCheck.className = "circle-check checked-info";
         divCheck.innerHTML = SVG_CHECK_MARK;
       } else {
-        divCheck.classList.remove("checked-info");
+        divCheck.className = "circle-check";
+        divCheck.innerHTML = "";
       }
 
       tdCheck.appendChild(divCheck);
 
-      // Toggle action
+      // Toggle action (cycle: unchecked -> purple -> green -> unchecked)
       tdCheck.addEventListener("click", () => {
         if (!reader.progress) reader.progress = {};
-        reader.progress[chIndex] = !isRead;
+        
+        const currentStatus = reader.progress[chIndex];
+        let nextStatus;
+        if (!currentStatus) {
+          nextStatus = "purple";
+        } else if (currentStatus === "purple" || currentStatus === true) {
+          nextStatus = "green";
+        } else {
+          nextStatus = false;
+        }
+
+        reader.progress[chIndex] = nextStatus;
         saveState();
         renderReaderTable();
       });
