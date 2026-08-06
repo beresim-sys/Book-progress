@@ -21,10 +21,10 @@ const COLUMNS = [
   { id: "agents", label: "סוכן עריכה" },
   { id: "evil-editor", label: "העורך המרושע" },
   { id: "contradictions", label: "סתירות" },
-  { id: "ai-writing", label: "כתיבת AI" },
   { id: "rewrite-engine", label: "מנוע שכתוב" },
   { id: "skills-editing", label: "עריכה עם סקילים - הגהה, מותג, אמונות" },
-  { id: "readers-rewrite", label: "קוראות ומנוע שכתוב" }
+  { id: "readers-rewrite", label: "קוראות ומנוע שכתוב" },
+  { id: "ai-writing", label: "כתיבת AI" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
