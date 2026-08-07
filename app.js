@@ -25,23 +25,24 @@ const COLUMNS = [
   { id: "beliefs", label: "אמונות" },
   { id: "proofreading", label: "הגהה" },
   { id: "brand", label: "מותג" },
-  { id: "readers-rewrite", label: "קוראות ומנוע שכתוב" },
+  { id: "rewrite-engine", label: "מנוע שכתוב" },
+  { id: "readers-overview", label: "קוראות" },
   { id: "ai-writing", label: "AI" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { comments: true, mindmap: false, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false }, // פרולוג
-  1: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false },  // שרה
-  2: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false },  // רפאל
-  3: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false }, // סלווטור
-  4: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false }, // סוזט
-  5: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "ai-writing": true, "readers-rewrite": false },  // מלכה
-  6: { comments: false, mindmap: false, agents: false, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false }, // מאיר
-  7: { comments: false, mindmap: false, agents: false, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false }, // ניסים
-  8: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false }, // אפילוג
-  9: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false }, // נספח סלוניקי
-  10: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "ai-writing": false, "readers-rewrite": false } // נספח דמויות
+  0: { comments: true, mindmap: false, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // פרולוג
+  1: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false },  // שרה
+  2: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false },  // רפאל
+  3: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // סלווטור
+  4: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // סוזט
+  5: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": true },  // מלכה
+  6: { comments: false, mindmap: false, agents: false, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // מאיר
+  7: { comments: false, mindmap: false, agents: false, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // ניסים
+  8: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // אפילוג
+  9: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // נספח סלוניקי
+  10: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false } // נספח דמויות
 };
 
 // Screenshot 2 tasks mapping
