@@ -14,6 +14,9 @@
   --success-color: #10b981;      /* Emerald-500 */
   --success-hover: #059669;      /* Emerald-600 */
   --success-light: #d1fae5;      /* Emerald-100 */
+  --blue-color: #0ea5e9;         /* Sky-500 */
+  --blue-hover: #0284c7;         /* Sky-600 */
+  --blue-light: #e0f2fe;         /* Sky-100 */
   --bg-color: #f8fafc;           /* Slate-50 */
   --card-bg: #ffffff;
   --text-main: #0f172a;          /* Slate-900 */
@@ -384,6 +387,23 @@ body {
   stroke-linejoin: round;
 }
 
+/* Checked Blue State (Comments Integrated) */
+.circle-check.checked-blue {
+  border-color: var(--blue-color);
+  background-color: var(--blue-light);
+  color: var(--blue-color);
+}
+
+.circle-check.checked-blue svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 3.5px;
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* Scale effect on hover */
 .checkbox-cell:hover .circle-check {
   transform: scale(1.12);
@@ -398,6 +418,11 @@ body {
 .checkbox-cell:hover .circle-check.checked-info {
   border-color: var(--primary-hover);
   background-color: #c7d2fe; /* indigo-200 */
+}
+
+.checkbox-cell:hover .circle-check.checked-blue {
+  border-color: var(--blue-hover);
+  background-color: #bae6fd; /* sky-200 */
 }
 
 /* Tab 2: General Tasks Layout */

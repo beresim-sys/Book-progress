@@ -425,6 +425,9 @@ function renderReaderTable() {
       } else if (status === "purple" || status === true) {
         divCheck.className = "circle-check checked-info";
         divCheck.innerHTML = SVG_CHECK_MARK;
+      } else if (status === "blue") {
+        divCheck.className = "circle-check checked-blue";
+        divCheck.innerHTML = SVG_CHECK_MARK;
       } else {
         divCheck.className = "circle-check";
         divCheck.innerHTML = "";
@@ -432,7 +435,7 @@ function renderReaderTable() {
 
       tdCheck.appendChild(divCheck);
 
-      // Toggle action (cycle: unchecked -> purple -> green -> unchecked)
+      // Toggle action (cycle: unchecked -> purple -> green -> blue -> unchecked)
       tdCheck.addEventListener("click", () => {
         if (!reader.progress) reader.progress = {};
         
@@ -442,6 +445,8 @@ function renderReaderTable() {
           nextStatus = "purple";
         } else if (currentStatus === "purple" || currentStatus === true) {
           nextStatus = "green";
+        } else if (currentStatus === "green") {
+          nextStatus = "blue";
         } else {
           nextStatus = false;
         }
