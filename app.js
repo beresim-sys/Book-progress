@@ -245,14 +245,28 @@ function renderOverviewTable() {
       const tdCheck = document.createElement("td");
       tdCheck.className = "checkbox-cell";
       
-      const isChecked = state.chapterStatus[chIndex] && state.chapterStatus[chIndex][col.id];
+      const status = state.chapterStatus[chIndex] && state.chapterStatus[chIndex][col.id];
       
       const divCheck = document.createElement("div");
-      divCheck.className = `circle-check checked-success ${isChecked ? "checked-success" : ""}`;
-      if (isChecked) {
-        divCheck.innerHTML = SVG_CHECK_MARK;
+      if (col.id === "readers-overview") {
+        if (status === "blue") {
+          divCheck.className = "circle-check checked-blue";
+          divCheck.innerHTML = SVG_CHECK_MARK;
+        } else if (status === "green" || status === true) {
+          divCheck.className = "circle-check checked-success";
+          divCheck.innerHTML = SVG_CHECK_MARK;
+        } else {
+          divCheck.className = "circle-check";
+          divCheck.innerHTML = "";
+        }
       } else {
-        divCheck.classList.remove("checked-success");
+        if (status === true) {
+          divCheck.className = "circle-check checked-success";
+          divCheck.innerHTML = SVG_CHECK_MARK;
+        } else {
+          divCheck.className = "circle-check";
+          divCheck.innerHTML = "";
+        }
       }
 
       tdCheck.appendChild(divCheck);
@@ -262,7 +276,22 @@ function renderOverviewTable() {
         if (!state.chapterStatus[chIndex]) {
           state.chapterStatus[chIndex] = {};
         }
-        state.chapterStatus[chIndex][col.id] = !isChecked;
+        
+        if (col.id === "readers-overview") {
+          const currentVal = state.chapterStatus[chIndex][col.id];
+          let newVal;
+          if (!currentVal) {
+            newVal = "green";
+          } else if (currentVal === "green" || currentVal === true) {
+            newVal = "blue";
+          } else {
+            newVal = false;
+          }
+          state.chapterStatus[chIndex][col.id] = newVal;
+        } else {
+          state.chapterStatus[chIndex][col.id] = !status;
+        }
+
         saveState();
         renderOverviewTable();
         updateProgressWidget();
