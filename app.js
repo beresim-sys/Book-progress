@@ -17,32 +17,28 @@ const INITIAL_CHAPTERS = [
 
 const COLUMNS = [
   { id: "comments", label: "הערות שלי" },
-  { id: "mindmap", label: "מפת חשיבה" },
-  { id: "agents", label: "סוכן עריכה" },
-  { id: "evil-editor", label: "העורך המרושע" },
-  { id: "backstories", label: "סיפורי רקע" },
-  { id: "contradictions", label: "סתירות" },
-  { id: "beliefs", label: "אמונות" },
-  { id: "proofreading", label: "הגהה" },
-  { id: "brand", label: "מותג" },
-  { id: "rewrite-engine", label: "מנוע שכתוב" },
-  { id: "readers-overview", label: "קוראות" },
-  { id: "ai-writing", label: "AI" }
+  { id: "experts-report", label: 'דו"ח מומחים' },
+  { id: "roy", label: "רועי" },
+  { id: "daniel", label: "דניאל" },
+  { id: "esther", label: "אסתר" },
+  { id: "yehuda", label: "יהודה" },
+  { id: "tiferet", label: "תפארת" },
+  { id: "readers-overview", label: "קוראות" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { comments: true, mindmap: false, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // פרולוג
-  1: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false },  // שרה
-  2: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false },  // רפאל
-  3: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // סלווטור
-  4: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // סוזט
-  5: { comments: true, mindmap: true, agents: true, "evil-editor": true, backstories: false, contradictions: true, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": true },  // מלכה
-  6: { comments: false, mindmap: false, agents: false, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // מאיר
-  7: { comments: false, mindmap: false, agents: false, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // ניסים
-  8: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // אפילוג
-  9: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false }, // נספח סלוניקי
-  10: { comments: true, mindmap: false, agents: true, "evil-editor": false, backstories: false, contradictions: false, beliefs: false, proofreading: false, brand: false, "rewrite-engine": false, "readers-overview": false, "ai-writing": false } // נספח דמויות
+  0: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true }, // פרולוג
+  1: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true },  // שרה
+  2: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true },  // רפאל
+  3: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true },  // סלווטור
+  4: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true },  // סוזט
+  5: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false }, // מלכה
+  6: { comments: false, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false }, // מאיר
+  7: { comments: false, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false }, // ניסים
+  8: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false },  // אפילוג
+  9: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false },  // נספח סלוניקי
+  10: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false }  // נספח דמויות
 };
 
 // Screenshot 2 tasks mapping
