@@ -248,7 +248,9 @@ function renderOverviewTable() {
       const status = state.chapterStatus[chIndex] && state.chapterStatus[chIndex][col.id];
       
       const divCheck = document.createElement("div");
-      if (col.id === "readers-overview") {
+      const isMultiState = ["experts-report", "daniel", "esther", "yehuda", "tiferet", "readers-overview"].includes(col.id);
+
+      if (isMultiState) {
         if (status === "blue") {
           divCheck.className = "circle-check checked-blue";
           divCheck.innerHTML = SVG_CHECK_MARK;
@@ -277,7 +279,7 @@ function renderOverviewTable() {
           state.chapterStatus[chIndex] = {};
         }
         
-        if (col.id === "readers-overview") {
+        if (isMultiState) {
           const currentVal = state.chapterStatus[chIndex][col.id];
           let newVal;
           if (!currentVal) {
