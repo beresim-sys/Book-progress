@@ -205,19 +205,22 @@ function renderAll() {
 // Calculate Progress and update indicator widget
 function updateProgressWidget() {
   let totalCells = 0;
-  let checkedCells = 0;
+  let progressUnits = 0;
 
-  // Overview Table Completion
+  // Overview Table Completion: "הושלם" (blue) = 1.0, "בעבודה" (green) = 0.5
   state.chapters.forEach((_, chIndex) => {
     COLUMNS.forEach(col => {
       totalCells++;
-      if (state.chapterStatus[chIndex] && state.chapterStatus[chIndex][col.id]) {
-        checkedCells++;
+      const val = state.chapterStatus[chIndex] && state.chapterStatus[chIndex][col.id];
+      if (val === "blue") {
+        progressUnits += 1;
+      } else if (val === "green" || val === true) {
+        progressUnits += 0.5;
       }
     });
   });
 
-  const progressPercent = totalCells > 0 ? Math.round((checkedCells / totalCells) * 100) : 0;
+  const progressPercent = totalCells > 0 ? Math.round((progressUnits / totalCells) * 100) : 0;
   
   // Update Widget texts & bar width
   document.getElementById("overall-progress-text").textContent = `${progressPercent}%`;
@@ -245,51 +248,42 @@ function renderOverviewTable() {
       const status = state.chapterStatus[chIndex] && state.chapterStatus[chIndex][col.id];
       
       const divCheck = document.createElement("div");
-      const isMultiState = ["professionals", "transliteration", "esther", "tiferet", "proofreading"].includes(col.id);
 
-      if (isMultiState) {
-        if (status === "blue") {
-          divCheck.className = "circle-check checked-blue";
-          divCheck.innerHTML = SVG_CHECK_MARK;
-        } else if (status === "green" || status === true) {
-          divCheck.className = "circle-check checked-success";
-          divCheck.innerHTML = SVG_CHECK_MARK;
-        } else {
-          divCheck.className = "circle-check";
-          divCheck.innerHTML = "";
-        }
+      if (status === "blue") {
+        divCheck.className = "circle-check checked-blue";
+        divCheck.innerHTML = SVG_CHECK_MARK;
+        divCheck.title = "הושלם";
+      } else if (status === "green" || status === true) {
+        divCheck.className = "circle-check checked-success";
+        divCheck.innerHTML = SVG_CHECK_MARK;
+        divCheck.title = "בעבודה";
       } else {
-        if (status === true) {
-          divCheck.className = "circle-check checked-success";
-          divCheck.innerHTML = SVG_CHECK_MARK;
-        } else {
-          divCheck.className = "circle-check";
-          divCheck.innerHTML = "";
-        }
+        divCheck.className = "circle-check";
+        divCheck.innerHTML = "";
+        divCheck.title = "לא התחיל";
       }
 
       tdCheck.appendChild(divCheck);
       
-      // Toggle cell action
+      // Toggle cell action:
+      // לחיצה 1: ירוק "בעבודה"
+      // לחיצה 2: תכלת "הושלם"
+      // לחיצה 3: איפוס
       tdCheck.addEventListener("click", () => {
         if (!state.chapterStatus[chIndex]) {
           state.chapterStatus[chIndex] = {};
         }
         
-        if (isMultiState) {
-          const currentVal = state.chapterStatus[chIndex][col.id];
-          let newVal;
-          if (!currentVal) {
-            newVal = "green";
-          } else if (currentVal === "green" || currentVal === true) {
-            newVal = "blue";
-          } else {
-            newVal = false;
-          }
-          state.chapterStatus[chIndex][col.id] = newVal;
+        const currentVal = state.chapterStatus[chIndex][col.id];
+        let newVal;
+        if (!currentVal) {
+          newVal = "green";
+        } else if (currentVal === "green" || currentVal === true) {
+          newVal = "blue";
         } else {
-          state.chapterStatus[chIndex][col.id] = !status;
+          newVal = false;
         }
+        state.chapterStatus[chIndex][col.id] = newVal;
 
         saveState();
         renderOverviewTable();
