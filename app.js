@@ -16,29 +16,26 @@ const INITIAL_CHAPTERS = [
 ];
 
 const COLUMNS = [
-  { id: "comments", label: "הערות שלי" },
-  { id: "experts-report", label: 'דו"ח מומחים' },
-  { id: "roy", label: "רועי" },
-  { id: "daniel", label: "דניאל" },
+  { id: "professionals", label: "אנשי מקצוע" },
+  { id: "transliteration", label: "תעתיק עברי" },
   { id: "esther", label: "אסתר" },
-  { id: "yehuda", label: "יהודה" },
   { id: "tiferet", label: "תפארת" },
-  { id: "readers-overview", label: "קוראות" }
+  { id: "proofreading", label: "הגהה" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true }, // פרולוג
-  1: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true },  // שרה
-  2: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true },  // רפאל
-  3: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true },  // סלווטור
-  4: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": true },  // סוזט
-  5: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false }, // מלכה
-  6: { comments: false, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false }, // מאיר
-  7: { comments: false, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false }, // ניסים
-  8: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false },  // אפילוג
-  9: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false },  // נספח סלוניקי
-  10: { comments: true, "experts-report": false, roy: false, daniel: false, esther: false, yehuda: false, tiferet: false, "readers-overview": false }  // נספח דמויות
+  0: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // פרולוג
+  1: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // שרה
+  2: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // רפאל
+  3: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // סלווטור
+  4: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // סוזט
+  5: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // מלכה
+  6: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // מאיר
+  7: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // ניסים
+  8: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // אפילוג
+  9: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // נספח סלוניקי
+  10: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }  // נספח דמויות
 };
 
 // Screenshot 2 tasks mapping
@@ -248,7 +245,7 @@ function renderOverviewTable() {
       const status = state.chapterStatus[chIndex] && state.chapterStatus[chIndex][col.id];
       
       const divCheck = document.createElement("div");
-      const isMultiState = ["experts-report", "daniel", "esther", "yehuda", "tiferet", "readers-overview"].includes(col.id);
+      const isMultiState = ["professionals", "transliteration", "esther", "tiferet", "proofreading"].includes(col.id);
 
       if (isMultiState) {
         if (status === "blue") {
