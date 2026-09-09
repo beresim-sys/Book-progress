@@ -20,22 +20,23 @@ const COLUMNS = [
   { id: "transliteration", label: "תעתיק עברי" },
   { id: "esther", label: "אסתר" },
   { id: "tiferet", label: "כתיבת AI" },
+  { id: "tiferet-rokeach", label: "תפארת רוקח" },
   { id: "proofreading", label: "הגהה" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // פרולוג
-  1: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // שרה
-  2: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // רפאל
-  3: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // סלווטור
-  4: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // סוזט
-  5: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // מלכה
-  6: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // מאיר
-  7: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }, // ניסים
-  8: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // אפילוג
-  9: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false },  // נספח סלוניקי
-  10: { professionals: false, transliteration: false, esther: false, tiferet: false, proofreading: false }  // נספח דמויות
+  0: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // פרולוג
+  1: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // שרה
+  2: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // רפאל
+  3: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // סלווטור
+  4: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // סוזט
+  5: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // מלכה
+  6: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // מאיר
+  7: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // ניסים
+  8: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // אפילוג
+  9: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // נספח סלוניקי
+  10: { professionals: false, transliteration: false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }  // נספח דמויות
 };
 
 // Screenshot 2 tasks mapping
