@@ -19,7 +19,7 @@ const COLUMNS = [
   { id: "professionals", label: "אנשי מקצוע" },
   { id: "transliteration", label: "תעתיק עברי" },
   { id: "esther", label: "אסתר" },
-  { id: "tiferet", label: "תפארת" },
+  { id: "tiferet", label: "כתיבת AI" },
   { id: "proofreading", label: "הגהה" }
 ];
 
