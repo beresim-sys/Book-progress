@@ -59,6 +59,7 @@ const SHIRI_CHAPTERS = [
 ];
 
 const SHIRI_STATUS_COLUMNS = [
+  { id: "ideas", label: "רעיונות לשילוב בפרק" },
   { id: "writing", label: "כתיבה" },
   { id: "esther", label: "אסתר" },
   { id: "ai-writing", label: "כתיבת AI" },
@@ -66,13 +67,13 @@ const SHIRI_STATUS_COLUMNS = [
 ];
 
 const INITIAL_SHIRI_DATA = {
-  "שרה": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "רפאל": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "סלווטור": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "סוזט": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "מלכה": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "מאיר": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "ניסים": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false }
+  "שרה": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "רפאל": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "סלווטור": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "סוזט": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "מלכה": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "מאיר": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "ניסים": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false }
 };
 
 // Screenshot 3 readers mapping
@@ -365,21 +366,7 @@ function renderShiriTable() {
     tdName.style.fontWeight = "600";
     tr.appendChild(tdName);
 
-    // 2. Ideas Input Cell
-    const tdIdeas = document.createElement("td");
-    const inputIdeas = document.createElement("input");
-    inputIdeas.type = "text";
-    inputIdeas.className = "table-input";
-    inputIdeas.placeholder = "רעיונות לשילוב בפרק...";
-    inputIdeas.value = rowData.ideas || rowData.description || "";
-    inputIdeas.addEventListener("input", (e) => {
-      rowData.ideas = e.target.value;
-      saveState();
-    });
-    tdIdeas.appendChild(inputIdeas);
-    tr.appendChild(tdIdeas);
-
-    // 3-6. Status Columns: כתיבה, אסתר, כתיבת AI, הגהה
+    // 2-6. All Status Columns: רעיונות לשילוב בפרק, כתיבה, אסתר, כתיבת AI, הגהה
     SHIRI_STATUS_COLUMNS.forEach(col => {
       const tdStatus = document.createElement("td");
       tdStatus.className = "checkbox-cell";
@@ -405,7 +392,7 @@ function renderShiriTable() {
       tdStatus.addEventListener("click", () => {
         const currentVal = rowData[col.id];
         let newVal;
-        if (!currentVal) {
+        if (!currentVal || typeof currentVal === "string") {
           newVal = "green";
         } else if (currentVal === "green" || currentVal === true) {
           newVal = "blue";
