@@ -454,9 +454,27 @@ function renderGeneralTasks() {
     card.appendChild(contentDiv);
     card.appendChild(checkDiv);
 
-    // Click handler to toggle
+    // Click handler to toggle: move completed tasks to bottom of the list
     card.addEventListener("click", () => {
       task.completed = !task.completed;
+      
+      const currentIndex = state.generalTasks.indexOf(task);
+      if (currentIndex > -1) {
+        state.generalTasks.splice(currentIndex, 1);
+        if (task.completed) {
+          // Move completed task to the bottom of the list
+          state.generalTasks.push(task);
+        } else {
+          // If un-completed, return above completed tasks
+          const firstCompletedIdx = state.generalTasks.findIndex(t => t.completed);
+          if (firstCompletedIdx > -1) {
+            state.generalTasks.splice(firstCompletedIdx, 0, task);
+          } else {
+            state.generalTasks.push(task);
+          }
+        }
+      }
+
       saveState();
       renderGeneralTasks();
     });
@@ -482,7 +500,14 @@ function handleAddGeneralTask() {
     completed: false
   };
 
-  state.generalTasks.push(newTask);
+  // Place new active task before completed tasks
+  const firstCompletedIdx = state.generalTasks.findIndex(t => t.completed);
+  if (firstCompletedIdx > -1) {
+    state.generalTasks.splice(firstCompletedIdx, 0, newTask);
+  } else {
+    state.generalTasks.push(newTask);
+  }
+
   saveState();
   renderGeneralTasks();
 
