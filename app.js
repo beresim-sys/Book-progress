@@ -102,6 +102,15 @@ const SVG_CHECK_MARK = `
   </svg>
 `;
 
+const SVG_TRASH = `
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="3 6 5 6 21 6"></polyline>
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+    <line x1="10" y1="11" x2="10" y2="17"></line>
+    <line x1="14" y1="11" x2="14" y2="17"></line>
+  </svg>
+`;
+
 // Initialize Application
 function initApp() {
   loadState();
@@ -439,7 +448,7 @@ function renderGeneralTasks() {
     contentDiv.appendChild(title);
     contentDiv.appendChild(desc);
 
-    // Checkbox circular element (on the right)
+    // Checkbox circular element
     const checkDiv = document.createElement("div");
     checkDiv.className = `circle-check checked-info ${task.completed ? "checked-info" : ""}`;
     if (task.completed) {
@@ -448,11 +457,30 @@ function renderGeneralTasks() {
       checkDiv.classList.remove("checked-info");
     }
 
-    // Since it's RTL: content first, then checkbox (which renders on the left side of text physically, or vice versa depending on layout).
-    // In style.css task-card is flex space-between, contentDiv (flex 1) will take space, checkDiv on the left/right. 
-    // Let's append content and checkbox
+    // Delete (Trash) button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "task-delete-btn";
+    deleteBtn.innerHTML = SVG_TRASH;
+    deleteBtn.title = "מחק משימה";
+    deleteBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (confirm(`האם למחוק את המשימה "${task.title}"?`)) {
+        const idx = state.generalTasks.indexOf(task);
+        if (idx > -1) {
+          state.generalTasks.splice(idx, 1);
+          saveState();
+          renderGeneralTasks();
+        }
+      }
+    });
+
+    const actionsDiv = document.createElement("div");
+    actionsDiv.className = "task-card-actions";
+    actionsDiv.appendChild(deleteBtn);
+    actionsDiv.appendChild(checkDiv);
+
     card.appendChild(contentDiv);
-    card.appendChild(checkDiv);
+    card.appendChild(actionsDiv);
 
     // Click handler to toggle: move completed tasks to bottom of the list
     card.addEventListener("click", () => {
