@@ -58,14 +58,21 @@ const SHIRI_CHAPTERS = [
   "ניסים"
 ];
 
+const SHIRI_STATUS_COLUMNS = [
+  { id: "writing", label: "כתיבה" },
+  { id: "esther", label: "אסתר" },
+  { id: "ai-writing", label: "כתיבת AI" },
+  { id: "proofreading", label: "הגהה" }
+];
+
 const INITIAL_SHIRI_DATA = {
-  "שרה": { description: "", status: false, notes: "" },
-  "רפאל": { description: "", status: false, notes: "" },
-  "סלווטור": { description: "", status: false, notes: "" },
-  "סוזט": { description: "", status: false, notes: "" },
-  "מלכה": { description: "", status: false, notes: "" },
-  "מאיר": { description: "", status: false, notes: "" },
-  "ניסים": { description: "", status: false, notes: "" }
+  "שרה": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "רפאל": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "סלווטור": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "סוזט": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "מלכה": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "מאיר": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false },
+  "ניסים": { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false }
 };
 
 // Screenshot 3 readers mapping
@@ -337,81 +344,72 @@ function renderShiriTable() {
 
   SHIRI_CHAPTERS.forEach(chapterName => {
     if (!state.shiriData[chapterName]) {
-      state.shiriData[chapterName] = { description: "", status: false, notes: "" };
+      state.shiriData[chapterName] = { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false };
     }
     const rowData = state.shiriData[chapterName];
 
     const tr = document.createElement("tr");
 
-    // Chapter Name Cell (on the side)
+    // 1. Chapter Name Cell (on the side)
     const tdName = document.createElement("td");
     tdName.textContent = chapterName;
     tdName.style.fontWeight = "600";
     tr.appendChild(tdName);
 
-    // Description Input Cell
-    const tdDesc = document.createElement("td");
-    const inputDesc = document.createElement("input");
-    inputDesc.type = "text";
-    inputDesc.className = "table-input";
-    inputDesc.placeholder = "תיאור השילוב בפרק...";
-    inputDesc.value = rowData.description || "";
-    inputDesc.addEventListener("input", (e) => {
-      rowData.description = e.target.value;
+    // 2. Ideas Input Cell
+    const tdIdeas = document.createElement("td");
+    const inputIdeas = document.createElement("input");
+    inputIdeas.type = "text";
+    inputIdeas.className = "table-input";
+    inputIdeas.placeholder = "רעיונות לשילוב בפרק...";
+    inputIdeas.value = rowData.ideas || rowData.description || "";
+    inputIdeas.addEventListener("input", (e) => {
+      rowData.ideas = e.target.value;
       saveState();
     });
-    tdDesc.appendChild(inputDesc);
-    tr.appendChild(tdDesc);
+    tdIdeas.appendChild(inputIdeas);
+    tr.appendChild(tdIdeas);
 
-    // Status Cell (2-state cycle: green "בעבודה", blue "הושלם", empty)
-    const tdStatus = document.createElement("td");
-    tdStatus.className = "checkbox-cell";
-    
-    const divCheck = document.createElement("div");
-    if (rowData.status === "blue") {
-      divCheck.className = "circle-check checked-blue";
-      divCheck.innerHTML = SVG_CHECK_MARK;
-      divCheck.title = "הושלם";
-    } else if (rowData.status === "green" || rowData.status === true) {
-      divCheck.className = "circle-check checked-success";
-      divCheck.innerHTML = SVG_CHECK_MARK;
-      divCheck.title = "בעבודה";
-    } else {
-      divCheck.className = "circle-check";
-      divCheck.innerHTML = "";
-      divCheck.title = "לא התחיל";
-    }
-    tdStatus.appendChild(divCheck);
+    // 3-6. Status Columns: כתיבה, אסתר, כתיבת AI, הגהה
+    SHIRI_STATUS_COLUMNS.forEach(col => {
+      const tdStatus = document.createElement("td");
+      tdStatus.className = "checkbox-cell";
 
-    tdStatus.addEventListener("click", () => {
-      const currentVal = rowData.status;
-      let newVal;
-      if (!currentVal) {
-        newVal = "green";
-      } else if (currentVal === "green" || currentVal === true) {
-        newVal = "blue";
+      const status = rowData[col.id];
+      const divCheck = document.createElement("div");
+
+      if (status === "blue") {
+        divCheck.className = "circle-check checked-blue";
+        divCheck.innerHTML = SVG_CHECK_MARK;
+        divCheck.title = "הושלם";
+      } else if (status === "green" || status === true) {
+        divCheck.className = "circle-check checked-success";
+        divCheck.innerHTML = SVG_CHECK_MARK;
+        divCheck.title = "בעבודה";
       } else {
-        newVal = false;
+        divCheck.className = "circle-check";
+        divCheck.innerHTML = "";
+        divCheck.title = "לא התחיל";
       }
-      rowData.status = newVal;
-      saveState();
-      renderShiriTable();
-    });
-    tr.appendChild(tdStatus);
+      tdStatus.appendChild(divCheck);
 
-    // Notes Input Cell
-    const tdNotes = document.createElement("td");
-    const inputNotes = document.createElement("input");
-    inputNotes.type = "text";
-    inputNotes.className = "table-input";
-    inputNotes.placeholder = "הערות...";
-    inputNotes.value = rowData.notes || "";
-    inputNotes.addEventListener("input", (e) => {
-      rowData.notes = e.target.value;
-      saveState();
+      tdStatus.addEventListener("click", () => {
+        const currentVal = rowData[col.id];
+        let newVal;
+        if (!currentVal) {
+          newVal = "green";
+        } else if (currentVal === "green" || currentVal === true) {
+          newVal = "blue";
+        } else {
+          newVal = false;
+        }
+        rowData[col.id] = newVal;
+        saveState();
+        renderShiriTable();
+      });
+
+      tr.appendChild(tdStatus);
     });
-    tdNotes.appendChild(inputNotes);
-    tr.appendChild(tdNotes);
 
     tbody.appendChild(tr);
   });
