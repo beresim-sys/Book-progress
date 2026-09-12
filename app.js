@@ -47,6 +47,12 @@ const INITIAL_GENERAL_TASKS = [
   { id: "gt-3", title: "זרימה וחיבור", desc: "האם הספר מרגיש כסיפור אחד, עלילה מסודרת, או חלקים חלקים שלא מתחברים. בעיקר בחיבורים בין הפרקים.", completed: false }
 ];
 
+// Shiri Tasks mapping
+const INITIAL_SHIRI_TASKS = [
+  { id: "st-1", title: "מיפוי נקודות שילוב בספר", desc: "איתור הפרקים והסצנות המתאימות לשילוב", completed: false },
+  { id: "st-2", title: "בדיקת התאמה לטון ולעלילה", desc: "לוודא שהשילוב זורם ומשתלב באופן טבעי בסיפור", completed: false }
+];
+
 // Screenshot 3 readers mapping
 const INITIAL_READERS = [
   { name: "י", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } },
@@ -83,6 +89,7 @@ function initApp() {
   
   // Register click handlers for form actions
   document.getElementById("add-task-btn").addEventListener("click", handleAddGeneralTask);
+  document.getElementById("add-shiri-task-btn").addEventListener("click", handleAddShiriTask);
   document.getElementById("add-reader-btn").addEventListener("click", handleAddReader);
   document.getElementById("new-reader-name").addEventListener("keypress", (e) => {
     if (e.key === "Enter") handleAddReader();
@@ -92,6 +99,12 @@ function initApp() {
   });
   document.getElementById("new-task-desc").addEventListener("keypress", (e) => {
     if (e.key === "Enter") handleAddGeneralTask();
+  });
+  document.getElementById("new-shiri-task-title").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") handleAddShiriTask();
+  });
+  document.getElementById("new-shiri-task-desc").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") handleAddShiriTask();
   });
 }
 
@@ -104,6 +117,9 @@ function loadState() {
       // Backwards compatibility / data integrity checks
       if (!state.chapters || state.chapters.length === 0) {
         resetToDefault();
+      }
+      if (!state.shiriTasks) {
+        state.shiriTasks = JSON.parse(JSON.stringify(INITIAL_SHIRI_TASKS));
       }
     } catch (e) {
       console.error("Error parsing saved state, resetting...", e);
@@ -119,6 +135,7 @@ function resetToDefault() {
   state.chapters = [...INITIAL_CHAPTERS];
   state.chapterStatus = JSON.parse(JSON.stringify(INITIAL_CHAPTER_STATUS));
   state.generalTasks = JSON.parse(JSON.stringify(INITIAL_GENERAL_TASKS));
+  state.shiriTasks = JSON.parse(JSON.stringify(INITIAL_SHIRI_TASKS));
   state.readers = JSON.parse(JSON.stringify(INITIAL_READERS));
   saveState();
 }
@@ -199,6 +216,7 @@ function initModal() {
 // Render All Parts of the Page
 function renderAll() {
   renderOverviewTable();
+  renderShiriTasks();
   renderGeneralTasks();
   renderReaderTable();
   updateProgressWidget();
@@ -297,6 +315,86 @@ function renderOverviewTable() {
 
     tbody.appendChild(tr);
   });
+}
+
+// Render Shiri Tasks (Tab: שילוב שירי בספר)
+function renderShiriTasks() {
+  const listContainer = document.getElementById("shiri-tasks-list");
+  if (!listContainer) return;
+  listContainer.innerHTML = "";
+
+  if (!state.shiriTasks || state.shiriTasks.length === 0) {
+    const emptyMsg = document.createElement("p");
+    emptyMsg.className = "text-muted";
+    emptyMsg.style.padding = "1rem";
+    emptyMsg.textContent = "אין משימות עדיין. הוסף משימה באמצעות הטופס למטה.";
+    listContainer.appendChild(emptyMsg);
+    return;
+  }
+
+  state.shiriTasks.forEach(task => {
+    const card = document.createElement("div");
+    card.className = `task-card ${task.completed ? "completed" : ""}`;
+
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "task-card-content";
+    
+    const title = document.createElement("h3");
+    title.className = "task-title";
+    title.textContent = task.title;
+    
+    const desc = document.createElement("p");
+    desc.className = "task-desc";
+    desc.textContent = task.desc;
+
+    contentDiv.appendChild(title);
+    contentDiv.appendChild(desc);
+
+    const checkDiv = document.createElement("div");
+    checkDiv.className = `circle-check checked-info ${task.completed ? "checked-info" : ""}`;
+    if (task.completed) {
+      checkDiv.innerHTML = SVG_CHECK_MARK;
+    } else {
+      checkDiv.classList.remove("checked-info");
+    }
+
+    card.appendChild(contentDiv);
+    card.appendChild(checkDiv);
+
+    card.addEventListener("click", () => {
+      task.completed = !task.completed;
+      saveState();
+      renderShiriTasks();
+    });
+
+    listContainer.appendChild(card);
+  });
+}
+
+// Handle adding a new Shiri Task
+function handleAddShiriTask() {
+  const titleInput = document.getElementById("new-shiri-task-title");
+  const descInput = document.getElementById("new-shiri-task-desc");
+  
+  const title = titleInput.value.trim();
+  const desc = descInput.value.trim();
+
+  if (!title) return;
+
+  const newTask = {
+    id: `st-${Date.now()}`,
+    title: title,
+    desc: desc || "אין תיאור למשימה זו",
+    completed: false
+  };
+
+  if (!state.shiriTasks) state.shiriTasks = [];
+  state.shiriTasks.push(newTask);
+  saveState();
+  renderShiriTasks();
+
+  titleInput.value = "";
+  descInput.value = "";
 }
 
 // Render General Book Tasks (Tab 2)
