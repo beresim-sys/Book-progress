@@ -425,6 +425,26 @@ body {
   background-color: #bae6fd; /* sky-200 */
 }
 
+/* Inputs inside table cells */
+.table-input {
+  width: 100%;
+  min-width: 140px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background-color: #ffffff;
+  color: var(--text-main);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.table-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
 /* Tab 2: General Tasks Layout */
 .tasks-container {
   display: flex;

@@ -120,20 +120,36 @@
           <h2 class="section-title">שילוב שירי בספר</h2>
         </div>
 
-        <div class="tasks-container">
-          <div class="tasks-list" id="shiri-tasks-list">
-            <!-- Dynamically populated -->
+        <div class="legend-container">
+          <span class="legend-title">מקרא:</span>
+          <div class="legend-item">
+            <span class="circle-check checked-success legend-circle">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="legend-text">בעבודה</span>
           </div>
+          <div class="legend-item">
+            <span class="circle-check checked-blue legend-circle">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="legend-text">הושלם</span>
+          </div>
+        </div>
 
-          <!-- Add Shiri Task Form -->
-          <div class="add-task-card">
-            <h3 class="card-subtitle">הוספת משימה חדשה</h3>
-            <div class="form-row">
-              <input type="text" id="new-shiri-task-title" placeholder="כותרת המשימה..." class="form-input">
-              <input type="text" id="new-shiri-task-desc" placeholder="תיאור משימה קצר..." class="form-input">
-              <button id="add-shiri-task-btn" class="btn btn-primary">הוסף משימה</button>
-            </div>
-          </div>
+        <div class="table-container">
+          <table class="progress-table" id="shiri-table">
+            <thead>
+              <tr>
+                <th>פרק</th>
+                <th>תיאור / אופן השילוב</th>
+                <th>סטטוס</th>
+                <th>הערות</th>
+              </tr>
+            </thead>
+            <tbody id="shiri-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
         </div>
       </section>
 
