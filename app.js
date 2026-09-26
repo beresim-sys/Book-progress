@@ -12,7 +12,8 @@ const INITIAL_CHAPTERS = [
   "ניסים",
   "אפילוג",
   "נספח קהילת סלוניקי",
-  "נספח גורל הדמויות"
+  "נספח גורל הדמויות",
+  "נספח מאכלים"
 ];
 
 const COLUMNS = [
@@ -36,7 +37,8 @@ const INITIAL_CHAPTER_STATUS = {
   7: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }, // ניסים
   8: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false },  // אפילוג
   9: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false },  // נספח סלוניקי
-  10: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }  // נספח דמויות
+  10: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }, // נספח דמויות
+  11: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }  // נספח מאכלים
 };
 
 // Screenshot 2 tasks mapping
@@ -77,14 +79,14 @@ const INITIAL_SHIRI_DATA = {
 
 // Screenshot 3 readers mapping
 const INITIAL_READERS = [
-  { name: "י", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } },
-  { name: "שירה", progress: { 0: true, 1: true, 2: true, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } },
-  { name: "נטליה", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } },
-  { name: "שרון הררי", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } },
-  { name: "אמא", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } },
-  { name: "סוזי", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } },
-  { name: "דפנה", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } },
-  { name: "יהודית", progress: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false } }
+  { name: "י", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
+  { name: "שירה", progress: { 0: true, 1: true, 2: true, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
+  { name: "נטליה", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
+  { name: "שרון הררי", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
+  { name: "אמא", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
+  { name: "סוזי", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
+  { name: "דפנה", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
+  { name: "יהודית", progress: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } }
 ];
 
 // App State
@@ -144,6 +146,22 @@ function loadState() {
       }
       if (!state.shiriData) {
         state.shiriData = JSON.parse(JSON.stringify(INITIAL_SHIRI_DATA));
+      }
+      if (state.chapters && !state.chapters.includes("נספח מאכלים")) {
+        const newIdx = state.chapters.length;
+        state.chapters.push("נספח מאכלים");
+        if (!state.chapterStatus) state.chapterStatus = {};
+        state.chapterStatus[newIdx] = {};
+        COLUMNS.forEach(col => {
+          state.chapterStatus[newIdx][col.id] = false;
+        });
+        if (state.readers) {
+          state.readers.forEach(reader => {
+            if (!reader.progress) reader.progress = {};
+            reader.progress[newIdx] = false;
+          });
+        }
+        saveState();
       }
       if (state.chapterStatus && state.chapters) {
         state.chapters.forEach((_, chIndex) => {
