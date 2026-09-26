@@ -16,28 +16,27 @@ const INITIAL_CHAPTERS = [
 ];
 
 const COLUMNS = [
-  { id: "professionals", label: "אנשי מקצוע" },
-  { id: "transliteration", label: "תעתיק עברי" },
-  { id: "literary-lies", label: "שקרים ספרותיים" },
-  { id: "esther", label: "אסתר" },
-  { id: "tiferet", label: "כתיבת AI" },
-  { id: "tiferet-rokeach", label: "תפארת רוקח" },
+  { id: "blue-marker", label: "מרקר כחול" },
+  { id: "steimatzky-report", label: "דוח סטימצקי" },
+  { id: "weak-scenes", label: "עריכת סצנות חלשות" },
+  { id: "tiferet", label: "תפארת" },
+  { id: "plot-grid", label: "PLOT GRID" },
   { id: "proofreading", label: "הגהה" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // פרולוג
-  1: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // שרה
-  2: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // רפאל
-  3: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // סלווטור
-  4: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // סוזט
-  5: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // מלכה
-  6: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // מאיר
-  7: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }, // ניסים
-  8: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // אפילוג
-  9: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false },  // נספח סלוניקי
-  10: { professionals: false, transliteration: false, "literary-lies": false, esther: false, tiferet: false, "tiferet-rokeach": false, proofreading: false }  // נספח דמויות
+  0: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }, // פרולוג
+  1: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false },  // שרה
+  2: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false },  // רפאל
+  3: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }, // סלווטור
+  4: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }, // סוזט
+  5: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false },  // מלכה
+  6: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }, // מאיר
+  7: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }, // ניסים
+  8: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false },  // אפילוג
+  9: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false },  // נספח סלוניקי
+  10: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, proofreading: false }  // נספח דמויות
 };
 
 // Screenshot 2 tasks mapping
@@ -145,6 +144,18 @@ function loadState() {
       }
       if (!state.shiriData) {
         state.shiriData = JSON.parse(JSON.stringify(INITIAL_SHIRI_DATA));
+      }
+      if (state.chapterStatus && state.chapters) {
+        state.chapters.forEach((_, chIndex) => {
+          if (!state.chapterStatus[chIndex]) {
+            state.chapterStatus[chIndex] = {};
+          }
+          COLUMNS.forEach(col => {
+            if (state.chapterStatus[chIndex][col.id] === undefined) {
+              state.chapterStatus[chIndex][col.id] = false;
+            }
+          });
+        });
       }
     } catch (e) {
       console.error("Error parsing saved state, resetting...", e);
