@@ -20,26 +20,26 @@ const COLUMNS = [
   { id: "blue-marker", label: "מרקר כחול" },
   { id: "steimatzky-report", label: "דוח סטימצקי" },
   { id: "weak-scenes", label: "עריכת סצנות חלשות" },
-  { id: "tiferet", label: "תפארת" },
   { id: "plot-grid", label: "PLOT GRID" },
   { id: "pov", label: "POV" },
+  { id: "tiferet", label: "תפארת" },
   { id: "proofreading", label: "הגהה" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false }, // פרולוג
-  1: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false },  // שרה
-  2: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false },  // רפאל
-  3: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false }, // סלווטור
-  4: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false }, // סוזט
-  5: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false },  // מלכה
-  6: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false }, // מאיר
-  7: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false }, // ניסים
-  8: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false },  // אפילוג
-  9: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false },  // נספח סלוניקי
-  10: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false }, // נספח דמויות
-  11: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, tiferet: false, "plot-grid": false, pov: false, proofreading: false }  // נספח מאכלים
+  0: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false }, // פרולוג
+  1: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false },  // שרה
+  2: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false },  // רפאל
+  3: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false }, // סלווטור
+  4: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false }, // סוזט
+  5: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false },  // מלכה
+  6: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false }, // מאיר
+  7: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false }, // ניסים
+  8: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false },  // אפילוג
+  9: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false },  // נספח סלוניקי
+  10: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false }, // נספח דמויות
+  11: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, tiferet: false, proofreading: false }  // נספח מאכלים
 };
 
 // Screenshot 2 tasks mapping
