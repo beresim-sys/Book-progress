@@ -17,30 +17,26 @@ const INITIAL_CHAPTERS = [
 ];
 
 const COLUMNS = [
-  { id: "blue-marker", label: "מרקר כחול" },
-  { id: "steimatzky-report", label: "דוח סטימצקי" },
-  { id: "weak-scenes", label: "עריכת סצנות חלשות" },
-  { id: "plot-grid", label: "PLOT GRID" },
+  { id: "nushki", label: "נושקי" },
+  { id: "kani", label: "קני" },
   { id: "pov", label: "POV" },
-  { id: "psychological-distance", label: "מרחק פסיכולוגי" },
-  { id: "tiferet", label: "תפארת" },
-  { id: "proofreading", label: "הגהה" }
+  { id: "steimatzky", label: "סטימצקי" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false }, // פרולוג
-  1: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false },  // שרה
-  2: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false },  // רפאל
-  3: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false }, // סלווטור
-  4: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false }, // סוזט
-  5: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false },  // מלכה
-  6: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false }, // מאיר
-  7: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false }, // ניסים
-  8: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false },  // אפילוג
-  9: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false },  // נספח סלוניקי
-  10: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false }, // נספח דמויות
-  11: { "blue-marker": false, "steimatzky-report": false, "weak-scenes": false, "plot-grid": false, pov: false, "psychological-distance": false, tiferet: false, proofreading: false }  // נספח מאכלים
+  0: { nushki: false, kani: false, pov: false, steimatzky: false }, // פרולוג
+  1: { nushki: false, kani: false, pov: false, steimatzky: false },  // שרה
+  2: { nushki: false, kani: false, pov: false, steimatzky: false },  // רפאל
+  3: { nushki: false, kani: false, pov: false, steimatzky: false }, // סלווטור
+  4: { nushki: false, kani: false, pov: false, steimatzky: false }, // סוזט
+  5: { nushki: false, kani: false, pov: false, steimatzky: false },  // מלכה
+  6: { nushki: false, kani: false, pov: false, steimatzky: false }, // מאיר
+  7: { nushki: false, kani: false, pov: false, steimatzky: false }, // ניסים
+  8: { nushki: false, kani: false, pov: false, steimatzky: false },  // אפילוג
+  9: { nushki: false, kani: false, pov: false, steimatzky: false },  // נספח סלוניקי
+  10: { nushki: false, kani: false, pov: false, steimatzky: false }, // נספח דמויות
+  11: { nushki: false, kani: false, pov: false, steimatzky: false }  // נספח מאכלים
 };
 
 // Screenshot 2 tasks mapping
@@ -169,6 +165,9 @@ function loadState() {
         state.chapters.forEach((_, chIndex) => {
           if (!state.chapterStatus[chIndex]) {
             state.chapterStatus[chIndex] = {};
+          }
+          if (state.chapterStatus[chIndex]["steimatzky"] === undefined && state.chapterStatus[chIndex]["steimatzky-report"] !== undefined) {
+            state.chapterStatus[chIndex]["steimatzky"] = state.chapterStatus[chIndex]["steimatzky-report"];
           }
           COLUMNS.forEach(col => {
             if (state.chapterStatus[chIndex][col.id] === undefined) {
