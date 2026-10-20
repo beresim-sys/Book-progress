@@ -24,24 +24,23 @@ const COLUMNS = [
   { id: "steimatzky", label: "סטימצקי" },
   { id: "tiferet", label: "תפארת" },
   { id: "plot-grid", label: "אסתר" },
-  { id: "linguistic-editing", label: "עריכה לשונית" },
-  { id: "proofreading", label: "הגהה" }
+  { id: "linguistic-editing", label: "עריכה לשונית" }
 ];
 
 // Screenshot 1 status mapping: Row index -> column id -> boolean status
 const INITIAL_CHAPTER_STATUS = {
-  0: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false }, // פרולוג
-  1: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false },  // שרה
-  2: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false },  // רפאל
-  3: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false }, // סלווטור
-  4: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false }, // סוזט
-  5: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false },  // מלכה
-  6: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false }, // מאיר
-  7: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false }, // ניסים
-  8: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false },  // אפילוג
-  9: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false },  // נספח סלוניקי
-  10: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false }, // נספח דמויות
-  11: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false, proofreading: false }  // נספח מאכלים
+  0: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // פרולוג
+  1: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // שרה
+  2: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // רפאל
+  3: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // סלווטור
+  4: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // סוזט
+  5: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // מלכה
+  6: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // מאיר
+  7: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // ניסים
+  8: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // אפילוג
+  9: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // נספח סלוניקי
+  10: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // נספח דמויות
+  11: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }  // נספח מאכלים
 };
 
 // Screenshot 2 tasks mapping
