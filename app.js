@@ -22,8 +22,8 @@ const COLUMNS = [
   { id: "iyov", label: "איוב" },
   { id: "pov", label: "POV" },
   { id: "steimatzky", label: "סטימצקי" },
-  { id: "plot-grid", label: "PLOT GRID" },
   { id: "tiferet", label: "תפארת" },
+  { id: "plot-grid", label: "PLOT GRID" },
   { id: "linguistic-editing", label: "עריכה לשונית" },
   { id: "proofreading", label: "הגהה" }
 ];
