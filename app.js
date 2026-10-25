@@ -10,6 +10,7 @@ const INITIAL_CHAPTERS = [
   "מלכה",
   "מאיר",
   "ניסים",
+  "שירה רוקח",
   "אפילוג",
   "נספח קהילת סלוניקי",
   "נספח גורל הדמויות",
@@ -37,10 +38,11 @@ const INITIAL_CHAPTER_STATUS = {
   5: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // מלכה
   6: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // מאיר
   7: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // ניסים
-  8: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // אפילוג
-  9: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // נספח סלוניקי
-  10: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // נספח דמויות
-  11: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }  // נספח מאכלים
+  8: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // שירה רוקח
+  9: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // אפילוג
+  10: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false },  // נספח סלוניקי
+  11: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }, // נספח דמויות
+  12: { nushki: false, kani: false, iyov: false, pov: false, steimatzky: false, "plot-grid": false, tiferet: false, "linguistic-editing": false }  // נספח מאכלים
 };
 
 // Screenshot 2 tasks mapping
@@ -81,14 +83,14 @@ const INITIAL_SHIRI_DATA = {
 
 // Screenshot 3 readers mapping
 const INITIAL_READERS = [
-  { name: "י", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
-  { name: "שירה", progress: { 0: true, 1: true, 2: true, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
-  { name: "נטליה", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
-  { name: "שרון הררי", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
-  { name: "אמא", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
-  { name: "סוזי", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
-  { name: "דפנה", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } },
-  { name: "יהודית", progress: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false } }
+  { name: "י", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } },
+  { name: "שירה", progress: { 0: true, 1: true, 2: true, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } },
+  { name: "נטליה", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } },
+  { name: "שרון הררי", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } },
+  { name: "אמא", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } },
+  { name: "סוזי", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } },
+  { name: "דפנה", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } },
+  { name: "יהודית", progress: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } }
 ];
 
 // App State
@@ -163,6 +165,30 @@ function loadState() {
             reader.progress[newIdx] = false;
           });
         }
+        saveState();
+      }
+      if (state.chapters && !state.chapters.includes("שירה רוקח")) {
+        const nissimIdx = state.chapters.indexOf("ניסים");
+        const insertIdx = nissimIdx !== -1 ? nissimIdx + 1 : state.chapters.length;
+        const oldLen = state.chapters.length;
+        if (!state.chapterStatus) state.chapterStatus = {};
+        for (let i = oldLen - 1; i >= insertIdx; i--) {
+          state.chapterStatus[i + 1] = state.chapterStatus[i];
+        }
+        state.chapterStatus[insertIdx] = {};
+        COLUMNS.forEach(col => {
+          state.chapterStatus[insertIdx][col.id] = false;
+        });
+        if (state.readers) {
+          state.readers.forEach(reader => {
+            if (!reader.progress) reader.progress = {};
+            for (let i = oldLen - 1; i >= insertIdx; i--) {
+              reader.progress[i + 1] = reader.progress[i];
+            }
+            reader.progress[insertIdx] = false;
+          });
+        }
+        state.chapters.splice(insertIdx, 0, "שירה רוקח");
         saveState();
       }
       if (state.chapterStatus && state.chapters) {
