@@ -53,35 +53,6 @@ const INITIAL_GENERAL_TASKS = [
   { id: "gt-3", title: "זרימה וחיבור", desc: "האם הספר מרגיש כסיפור אחד, עלילה מסודרת, או חלקים חלקים שלא מתחברים. בעיקר בחיבורים בין הפרקים.", completed: false }
 ];
 
-// Shiri Table Chapters & Initial Data
-const SHIRI_CHAPTERS = [
-  "שרה",
-  "רפאל",
-  "סלווטור",
-  "סוזט",
-  "מלכה",
-  "מאיר",
-  "ניסים"
-];
-
-const SHIRI_STATUS_COLUMNS = [
-  { id: "ideas", label: "רעיונות לשילוב בפרק" },
-  { id: "writing", label: "כתיבה" },
-  { id: "esther", label: "אסתר" },
-  { id: "ai-writing", label: "כתיבת AI" },
-  { id: "proofreading", label: "הגהה" }
-];
-
-const INITIAL_SHIRI_DATA = {
-  "שרה": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "רפאל": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "סלווטור": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "סוזט": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "מלכה": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "מאיר": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false },
-  "ניסים": { ideas: false, writing: false, esther: false, "ai-writing": false, proofreading: false }
-};
-
 // Screenshot 3 readers mapping
 const INITIAL_READERS = [
   { name: "י", progress: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false } },
@@ -148,9 +119,6 @@ function loadState() {
       // Backwards compatibility / data integrity checks
       if (!state.chapters || state.chapters.length === 0) {
         resetToDefault();
-      }
-      if (!state.shiriData) {
-        state.shiriData = JSON.parse(JSON.stringify(INITIAL_SHIRI_DATA));
       }
       if (state.chapters && !state.chapters.includes("נספח מאכלים")) {
         const newIdx = state.chapters.length;
@@ -221,7 +189,6 @@ function resetToDefault() {
   state.chapters = [...INITIAL_CHAPTERS];
   state.chapterStatus = JSON.parse(JSON.stringify(INITIAL_CHAPTER_STATUS));
   state.generalTasks = JSON.parse(JSON.stringify(INITIAL_GENERAL_TASKS));
-  state.shiriData = JSON.parse(JSON.stringify(INITIAL_SHIRI_DATA));
   state.readers = JSON.parse(JSON.stringify(INITIAL_READERS));
   saveState();
 }
@@ -302,7 +269,6 @@ function initModal() {
 // Render All Parts of the Page
 function renderAll() {
   renderOverviewTable();
-  renderShiriTable();
   renderGeneralTasks();
   renderReaderTable();
   updateProgressWidget();
@@ -397,75 +363,6 @@ function renderOverviewTable() {
       });
 
       tr.appendChild(tdCheck);
-    });
-
-    tbody.appendChild(tr);
-  });
-}
-
-// Render Shiri Table (Tab: שילוב שירי בספר)
-function renderShiriTable() {
-  const tbody = document.getElementById("shiri-table-body");
-  if (!tbody) return;
-  tbody.innerHTML = "";
-
-  if (!state.shiriData) {
-    state.shiriData = JSON.parse(JSON.stringify(INITIAL_SHIRI_DATA));
-  }
-
-  SHIRI_CHAPTERS.forEach(chapterName => {
-    if (!state.shiriData[chapterName]) {
-      state.shiriData[chapterName] = { ideas: "", writing: false, esther: false, "ai-writing": false, proofreading: false };
-    }
-    const rowData = state.shiriData[chapterName];
-
-    const tr = document.createElement("tr");
-
-    // 1. Chapter Name Cell (on the side)
-    const tdName = document.createElement("td");
-    tdName.textContent = chapterName;
-    tdName.style.fontWeight = "600";
-    tr.appendChild(tdName);
-
-    // 2-6. All Status Columns: רעיונות לשילוב בפרק, כתיבה, אסתר, כתיבת AI, הגהה
-    SHIRI_STATUS_COLUMNS.forEach(col => {
-      const tdStatus = document.createElement("td");
-      tdStatus.className = "checkbox-cell";
-
-      const status = rowData[col.id];
-      const divCheck = document.createElement("div");
-
-      if (status === "blue") {
-        divCheck.className = "circle-check checked-blue";
-        divCheck.innerHTML = SVG_CHECK_MARK;
-        divCheck.title = "הושלם";
-      } else if (status === "green" || status === true) {
-        divCheck.className = "circle-check checked-success";
-        divCheck.innerHTML = SVG_CHECK_MARK;
-        divCheck.title = "בעבודה";
-      } else {
-        divCheck.className = "circle-check";
-        divCheck.innerHTML = "";
-        divCheck.title = "לא התחיל";
-      }
-      tdStatus.appendChild(divCheck);
-
-      tdStatus.addEventListener("click", () => {
-        const currentVal = rowData[col.id];
-        let newVal;
-        if (!currentVal || typeof currentVal === "string") {
-          newVal = "green";
-        } else if (currentVal === "green" || currentVal === true) {
-          newVal = "blue";
-        } else {
-          newVal = false;
-        }
-        rowData[col.id] = newVal;
-        saveState();
-        renderShiriTable();
-      });
-
-      tr.appendChild(tdStatus);
     });
 
     tbody.appendChild(tr);
